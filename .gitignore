@@ -1,0 +1,10 @@
+.idea
+bin
+data
+.data
+vendor
+.env
+env.*
+env
+tmp
+ent/gen/migrate/migrations/atlas.sum
