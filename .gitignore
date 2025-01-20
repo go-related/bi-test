@@ -7,4 +7,3 @@ vendor
 env.*
 env
 tmp
-ent/gen/migrate/migrations/atlas.sum
