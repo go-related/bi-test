@@ -32,16 +32,16 @@ func RunMigrations() {
 	ethHost := "http://localhost:8545"
 	privateKeyHex := "18f9b8f25d49a65b7c2c5c99387fde36e11782d2aa025e25a33d8de991eacf6a"
 
-	ethclient := utils.NewEthClient(ethHost)
+	ethClient := utils.NewEthClient(ethHost)
 
 	// Getting the Chain ID
-	chainId, err := ethclient.ChainID(context.Background())
+	chainId, err := ethClient.ChainID(context.Background())
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	DeployCounterContract(privateKeyHex, ethclient, chainId)
-	DeployCarRentingContract(privateKeyHex, ethclient, chainId)
+	//DeployCounterContract(privateKeyHex, ethClient, chainId)
+	DeployCarRentingContract(privateKeyHex, ethClient, chainId)
 }
 
 func DeployCounterContract(privateKeyHex string, ethclient *ethclient.Client, chainId *big.Int) {
@@ -60,6 +60,12 @@ func DeployCounterContract(privateKeyHex string, ethclient *ethclient.Client, ch
 	}
 	logrus.WithField("from", fromAddressResult).WithField("tx", tx).WithField("ctr", bindedContract).
 		Info("deployed counter helper contract addres")
+	/*
+		2025-01-21 12:02:14 INFO [01-21|11:02:14.602] Submitted contract creation
+		hash=0x59530d65fcc0f62c903d3d4ba171a18104de4be512c00852ae120afdc6d69c26
+		from=0x872B01f0dd1FC7b5AfEB05610e412E83836C82a6 nonce=59
+		contract=0x9CBc233e8067c95C938BDda5666073FC9c084672 value=0
+	*/
 }
 
 func DeployCarRentingContract(privateKeyHex string, ethclient *ethclient.Client, chainId *big.Int) {
@@ -78,4 +84,10 @@ func DeployCarRentingContract(privateKeyHex string, ethclient *ethclient.Client,
 	}
 	logrus.WithField("from", fromAddressResult).WithField("tx", tx).WithField("ctr", bindedContract).
 		Info("deployed counter helper contract addres")
+
+	/*
+		Submitted contract creation              hash=0x59530d65fcc0f62c903d3d4ba171a18104de4be512c00852ae120afdc6d69c26
+		from=0x872B01f0dd1FC7b5AfEB05610e412E83836C82a6 nonce=59
+		contract=0x9CBc233e8067c95C938BDda5666073FC9c084672 value=0
+	*/
 }
