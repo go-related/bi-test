@@ -13,5 +13,5 @@
   ```
 - Generate golag binding for smart contract
   ```shell
-  abigen --abi contracts/Counter/Counter.abi --pkg main --type Counter --out CounterContract.go
+  abigen --abi contracts/CarRenting/CarRenting.abi --pkg main --type CarRenting --out CarRentingContract.go
   ```

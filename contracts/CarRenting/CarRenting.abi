@@ -1,0 +1,89 @@
+[
+    {
+      "type": "constructor",
+      "inputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "addCar",
+      "inputs": [
+        {
+          "name": "car",
+          "type": "tuple",
+          "internalType": "struct CarRenting.Car",
+          "components": [
+            {
+              "name": "hp",
+              "type": "uint16",
+              "internalType": "uint16"
+            },
+            {
+              "name": "fuelLevel",
+              "type": "uint16",
+              "internalType": "uint16"
+            },
+            {
+              "name": "isRented",
+              "type": "bool",
+              "internalType": "bool"
+            },
+            {
+              "name": "rentedTo",
+              "type": "address",
+              "internalType": "address"
+            }
+          ]
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "rentCar",
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "rents",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "hp",
+          "type": "uint16",
+          "internalType": "uint16"
+        },
+        {
+          "name": "fuelLevel",
+          "type": "uint16",
+          "internalType": "uint16"
+        },
+        {
+          "name": "isRented",
+          "type": "bool",
+          "internalType": "bool"
+        },
+        {
+          "name": "rentedTo",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "view"
+    }
+  ]
