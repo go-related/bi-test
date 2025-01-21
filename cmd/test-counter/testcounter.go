@@ -2,73 +2,63 @@ package main
 
 import (
 	"context"
-	"crypto/ecdsa"
 	"entdemo/contracts"
 	"entdemo/internal/utils"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/sirupsen/logrus"
 	"log"
 	"math/big"
 )
 
 func main() {
-	runContract()
+	runCounterContract()
 }
 
-func runContract() {
-	ethclient := utils.NewEthClient("http://localhost:8545")
+func runCounterContract() {
+	ethUrl := "http://localhost:8545"
+	ethclient := utils.NewEthClient(ethUrl)
 
 	privateKeyHex := "18f9b8f25d49a65b7c2c5c99387fde36e11782d2aa025e25a33d8de991eacf6a"
-	privateKey, err := crypto.HexToECDSA(privateKeyHex)
+	contractDeployedHex := "0xC29c56Dbd04Df6b88a8c8F4167D84Fd9dBaEaefE"
+
+	privateKey, fromAddress := utils.GetMetadataFromPrivateKeyHex(privateKeyHex)
+	contractPrivateKeyHex := common.HexToAddress(contractDeployedHex)
+	chainId, err := ethclient.ChainID(context.Background())
 	if err != nil {
 		log.Fatal(err)
 	}
-	publicKey := privateKey.Public()
-	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
-	if !ok {
-		logrus.Println("cannot assert type: publicKey is not of type *ecdsa.PublicKey")
-	}
-	fromAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
-
-	// we get this from node itself
-	contractPrivateKeyHex := common.HexToAddress("0xC29c56Dbd04Df6b88a8c8F4167D84Fd9dBaEaefE")
 
 	contractObj, err := contracts.NewCounter(contractPrivateKeyHex, ethclient)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// get the tx option
-	chainId, err := ethclient.ChainID(context.Background())
-	if err != nil {
-		log.Fatal(err)
-	}
-	auth, err := bind.NewKeyedTransactorWithChainID(privateKey, chainId)
-	if err != nil {
-		log.Fatal(err)
-	}
+	// operation 1
 
-	auth, err = utils.GetTransactOpts(ethclient, fromAddress, auth)
+	transactionOps, err := utils.GetTransaction(ethclient, privateKey, chainId, fromAddress)
 	if err != nil {
 		logrus.Fatal(err)
 	}
-
-	//
 	input := big.NewInt(400)
-	tx, err := contractObj.SetNumber(auth, input)
+	tx, err := contractObj.SetNumber(transactionOps, input)
 	if err != nil {
 		logrus.Fatal(err)
 	}
-	logrus.WithField("tx", tx.Hash().Hex()).Info("set tx")
+	logrus.WithField("tx", tx.Hash().Hex()).Info("operation 1 set tx")
 
-	tx, err = contractObj.Increment(auth)
+	// operation2
+	transactionOps, err = utils.GetTransaction(ethclient, privateKey, chainId, fromAddress)
 	if err != nil {
 		logrus.Fatal(err)
 	}
-	logrus.WithField("tx", tx.Hash().Hex()).Info("invrement tx")
+	tx, err = contractObj.Increment(transactionOps)
+	if err != nil {
+		logrus.Fatal(err)
+	}
+	logrus.WithField("tx", tx.Hash().Hex()).Info("operation 2 increment tx")
 
+	// operation3
 	callOpts := bind.CallOpts{
 		From: fromAddress,
 	}
@@ -76,6 +66,6 @@ func runContract() {
 	if err != nil {
 		logrus.Fatal(err)
 	}
-	logrus.WithField("number", result.Int64()).Info("invrement tx")
+	logrus.WithField("number", result.Int64()).Info("operation 3 get the number back")
 
 }

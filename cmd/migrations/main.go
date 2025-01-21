@@ -61,8 +61,7 @@ func DeployCounterContract(privateKeyHex string, ethclient *ethclient.Client, ch
 	logrus.WithField("from", fromAddressResult).WithField("tx", tx).WithField("ctr", bindedContract).
 		Info("deployed counter helper contract addres")
 	/*
-		2025-01-21 12:02:14 INFO [01-21|11:02:14.602] Submitted contract creation
-		hash=0x59530d65fcc0f62c903d3d4ba171a18104de4be512c00852ae120afdc6d69c26
+		2025-01-21 12:02:14 INFO [01-21|11:02:14.602] Submitted contract creation hash=0x59530d65fcc0f62c903d3d4ba171a18104de4be512c00852ae120afdc6d69c26
 		from=0x872B01f0dd1FC7b5AfEB05610e412E83836C82a6 nonce=59
 		contract=0x9CBc233e8067c95C938BDda5666073FC9c084672 value=0
 	*/
