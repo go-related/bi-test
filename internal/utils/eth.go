@@ -2,8 +2,10 @@ package utils
 
 import (
 	"context"
+	"crypto/ecdsa"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/sirupsen/logrus"
 	"log"
@@ -27,7 +29,33 @@ func NewEthClient(host string) *ethclient.Client {
 	return client
 }
 
-func GetTransactOpts(ethclient *ethclient.Client, fromAddress common.Address, auth *bind.TransactOpts) (*bind.TransactOpts, error) {
+func GetMetadataFromPrivateKeyHex(privateKeyHex string) (*ecdsa.PrivateKey, common.Address) {
+	privateKey, err := crypto.HexToECDSA(privateKeyHex)
+	if err != nil {
+		log.Fatal(err)
+	}
+	publicKey := privateKey.Public()
+	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
+	if !ok {
+		logrus.Println("cannot assert type: publicKey is not of type *ecdsa.PublicKey")
+	}
+	return privateKey, crypto.PubkeyToAddress(*publicKeyECDSA)
+}
+
+func GetTransaction(ethclient *ethclient.Client, privateKey *ecdsa.PrivateKey, chainId *big.Int, fromAddress common.Address) (*bind.TransactOpts, error) {
+	transactionOptions, err := bind.NewKeyedTransactorWithChainID(privateKey, chainId)
+	if err != nil {
+		return nil, err
+	}
+
+	auth, err := getTransactOpts(ethclient, fromAddress, transactionOptions)
+	if err != nil {
+		return nil, err
+	}
+	return auth, nil
+}
+
+func getTransactOpts(ethclient *ethclient.Client, fromAddress common.Address, auth *bind.TransactOpts) (*bind.TransactOpts, error) {
 	nonce, err := ethclient.PendingNonceAt(context.Background(), fromAddress)
 	if err != nil {
 		log.Fatal(err)

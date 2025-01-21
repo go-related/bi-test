@@ -2,12 +2,9 @@ package main
 
 import (
 	"context"
-	"crypto/ecdsa"
 	"entdemo/contracts"
 	"entdemo/ent"
 	"entdemo/internal/utils"
-	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/ethereum/go-ethereum/crypto"
 	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
 	"log"
@@ -40,29 +37,15 @@ func RunMigrations() {
 
 	// Init account used to deploy contracts
 	privateKeyHex := "18f9b8f25d49a65b7c2c5c99387fde36e11782d2aa025e25a33d8de991eacf6a"
-	privateKey, err := crypto.HexToECDSA(privateKeyHex)
-	if err != nil {
-		log.Fatal(err)
-	}
-	publicKey := privateKey.Public()
-	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
-	if !ok {
-		logrus.Println("cannot assert type: publicKey is not of type *ecdsa.PublicKey")
-	}
-	fromAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
+	privateKey, fromAddress := utils.GetMetadataFromPrivateKeyHex(privateKeyHex)
 
 	// Building the transactor object
-	auth, err := bind.NewKeyedTransactorWithChainID(privateKey, chainId)
+	trnOptions, err := utils.GetTransaction(ethclient, privateKey, chainId, fromAddress)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	auth, err = utils.GetTransactOpts(ethclient, fromAddress, auth)
-	if err != nil {
-		logrus.Fatal(err)
-	}
-
-	fromAddressResult, tx, bindedContract, err := contracts.DeployCounterHelper(auth, ethclient)
+	fromAddressResult, tx, bindedContract, err := contracts.DeployCounterHelper(trnOptions, ethclient)
 	if err != nil {
 		logrus.Fatal(err)
 	}
