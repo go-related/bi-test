@@ -12,31 +12,32 @@ import (
 )
 
 func main() {
-	runCounterContract()
+	//runCounterContract()
+	RunCarRenting()
 }
 
 func runCounterContract() {
 	ethUrl := "http://localhost:8545"
-	ethclient := utils.NewEthClient(ethUrl)
+	ethClient := utils.NewEthClient(ethUrl)
 
 	privateKeyHex := "18f9b8f25d49a65b7c2c5c99387fde36e11782d2aa025e25a33d8de991eacf6a"
 	contractDeployedHex := "0xC29c56Dbd04Df6b88a8c8F4167D84Fd9dBaEaefE"
 
 	privateKey, fromAddress := utils.GetMetadataFromPrivateKeyHex(privateKeyHex)
 	contractPrivateKeyHex := common.HexToAddress(contractDeployedHex)
-	chainId, err := ethclient.ChainID(context.Background())
+	chainId, err := ethClient.ChainID(context.Background())
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	contractObj, err := contracts.NewCounter(contractPrivateKeyHex, ethclient)
+	contractObj, err := contracts.NewCounter(contractPrivateKeyHex, ethClient)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// operation 1
 
-	transactionOps, err := utils.GetTransaction(ethclient, privateKey, chainId, fromAddress)
+	transactionOps, err := utils.GetTransaction(ethClient, privateKey, chainId, fromAddress)
 	if err != nil {
 		logrus.Fatal(err)
 	}
@@ -48,7 +49,7 @@ func runCounterContract() {
 	logrus.WithField("tx", tx.Hash().Hex()).Info("operation 1 set tx")
 
 	// operation2
-	transactionOps, err = utils.GetTransaction(ethclient, privateKey, chainId, fromAddress)
+	transactionOps, err = utils.GetTransaction(ethClient, privateKey, chainId, fromAddress)
 	if err != nil {
 		logrus.Fatal(err)
 	}

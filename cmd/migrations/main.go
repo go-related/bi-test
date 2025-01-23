@@ -85,8 +85,9 @@ func DeployCarRentingContract(privateKeyHex string, ethclient *ethclient.Client,
 		Info("deployed counter helper contract addres")
 
 	/*
-		Submitted contract creation              hash=0x59530d65fcc0f62c903d3d4ba171a18104de4be512c00852ae120afdc6d69c26
-		from=0x872B01f0dd1FC7b5AfEB05610e412E83836C82a6 nonce=59
-		contract=0x9CBc233e8067c95C938BDda5666073FC9c084672 value=0
+			Submitted contract creation              hash=0x59530d65fcc0f62c903d3d4ba171a18104de4be512c00852ae120afdc6d69c26
+			from=0x872B01f0dd1FC7b5AfEB05610e412E83836C82a6 nonce=59
+			contract=0xC4eA218335D8AbE0b7275a4631eA3F68C4D895C8
+		value=0
 	*/
 }
