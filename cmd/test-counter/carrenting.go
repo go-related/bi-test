@@ -88,6 +88,7 @@ func RunCarRenting() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	AddCar(ethClient, owner1Pk, chainId, owner1From, contractObj, contractPrivateKeyHex)
 	AddCar(ethClient, owner2Pk, chainId, owner2From, contractObj, contractPrivateKeyHex)
 	//
@@ -147,6 +148,17 @@ func AddCar(ethClient *ethclient.Client, owner1Pk *ecdsa.PrivateKey, chainId *bi
 		//logrus.WithField("reason", reason).WithError(err).Info("GetTxRevertReason")
 
 	}
+
+	receipt, err := ethClient.TransactionReceipt(context.Background(), tx.Hash())
+	if err != nil {
+		logrus.WithError(err).WithField("tx", tx).Fatal("failed to send transaction")
+	}
+	logrus.WithField("receipt", receipt.Status).Info("car")
+
+	// check what we added
+	result, err := contractObj.Rents(&bind.CallOpts{}, owner1From)
+	logrus.WithField("car", result).Info("just added the car")
+
 	//err = ethClient.SendTransaction(context.Background(), tx)
 	//if err != nil {
 	//	logrus.WithError(err).WithField("tx", tx).Fatal("failed to send transaction")
