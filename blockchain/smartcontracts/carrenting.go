@@ -5,6 +5,7 @@ import (
 	"crypto/ecdsa"
 	"entdemo/blockchain/user"
 	"entdemo/contracts"
+	"entdemo/internal/utils"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
@@ -48,8 +49,8 @@ func (cl *EthClient) RunSimulation(contractAddress common.Address, adminPk *ecds
 	}
 
 	err = cl.RentCar(user4Pk, user4Address, user1Address, contractAddress)
-	if err != nil {
-		return errors.Wrap(err, "failed to rent car for the user 3")
+	if err == nil {
+		return errors.Wrap(err, "didn't fail to rent a rented car ")
 	}
 
 	return nil
@@ -65,6 +66,8 @@ func (cl *EthClient) RentCar(renterPk *ecdsa.PrivateKey, renterFrom common.Addre
 	}
 	carTx, err := contractObj.RentCar(transactionOps, owner)
 	if err != nil {
+		logrus.WithError(err).Error("failed to rent car")
+		//return cl.GetError(carTx, transactionOps, contractAddress)
 		return err
 	}
 	cl.WaitForTx(carTx)
@@ -94,21 +97,8 @@ func (cl *EthClient) AddCar(ownerPk *ecdsa.PrivateKey, ownerFrom common.Address,
 	})
 	if err != nil {
 		return errors.Wrap(err, "failed to add car to the chain")
-		//abi, _ := contracts.CarRentingMetaDataWithBin.GetAbi()
-		//binContract := common.FromHex(contracts.CarRentingMetaDataWithBin.Bin)
-		//reason, err := utils.GetRevertReason(context.Background(), ethClient, transactionOps, contractAddress, abi, binContract)
-		//logrus.WithField("reason", reason).WithError(err).Info("result of the get revert reason")
-		//
-		//reason, err = utils.GetTxRevertReason(context.Background(), ethClient, tx.Hash())
-		//logrus.WithField("reason", reason).WithError(err).Info("GetTxRevertReason")
-
 	}
 	cl.WaitForTx(tx)
-
-	//if err != nil {
-	//	return errors.Wrap(err, "failed to get the status of the transaction")
-	//}
-	//logrus.WithField("receipt", receipt.Status).Info("car")
 
 	// check what we added
 	result, err := contractObj.Rents(&bind.CallOpts{}, ownerFrom)
@@ -119,6 +109,22 @@ func (cl *EthClient) AddCar(ownerPk *ecdsa.PrivateKey, ownerFrom common.Address,
 	return err
 }
 
+func (cl *EthClient) GetError(tx *types.Transaction, opts *bind.TransactOpts, contractAddress common.Address) error {
+	abi, _ := contracts.CarRentingMetaDataWithBin.GetAbi()
+	binContract := common.FromHex(contracts.CarRentingMetaDataWithBin.Bin)
+	reason, err := utils.GetRevertReason(context.Background(), cl.GetClient(), opts, contractAddress, abi, binContract)
+	if err != nil {
+		return errors.Wrap(err, "failed to get the error reson")
+	}
+	if reason == "execution reverted" {
+		reason, err = utils.GetTxRevertReason(context.Background(), cl.GetClient(), tx.Hash())
+		if err != nil {
+			return errors.Wrap(err, "failed to get the revert reason")
+		}
+		return errors.New("failed reason : " + reason)
+	}
+	return errors.New("failed reason : " + reason)
+}
 func (cl *EthClient) WaitForTx(tx *types.Transaction) {
 	logrus.Info("started to wait for the publishing to happen")
 
