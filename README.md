@@ -15,10 +15,23 @@ not waiting for the tx and tx options related things.
     ```
   go run -mod=mod entgo.io/ent/cmd/ent new User
   ```
-- Creat migrations
+  - Creat migrations
+      ```
+    go generate -feature sql/modifier ./ent
     ```
-  go generate ./ent
-  ```
+    - generate with modify
+      ```shell
+        go run -mod=mod entgo.io/ent/cmd/ent generate --feature sql/modifier ./ent/schema
+      ```
+    - generate a for a specific entity 
+      ```shell
+        go run -mod=mod entgo.io/ent/cmd/ent generate --feature sql/modifier ./ent/schema
+      ```
+    - generate with time
+        ```shell
+        go run -mod=mod entgo.io/ent/cmd/ent generate --feature sql/modifier ./ent/schema --target
+      ```
+      
 - Generate golag binding for smart contract
   ```shell
   abigen --abi contracts/CarRenting/CarRenting.abi --pkg main --type CarRenting --out CarRentingContract.go

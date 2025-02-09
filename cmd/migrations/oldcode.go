@@ -23,10 +23,10 @@ func RunMigrations() {
 	}
 
 	// deploy contracts
-	ethHost := "http://localhost:8545"
+	hostUrl := "http://localhost:8545"
 	privateKeyHex := "18f9b8f25d49a65b7c2c5c99387fde36e11782d2aa025e25a33d8de991eacf6a"
 
-	ethClient := utils.NewEthClient(ethHost)
+	ethClient := utils.NewEthClient(hostUrl)
 
 	// Getting the Chain ID
 	chainId, err := ethClient.ChainID(context.Background())

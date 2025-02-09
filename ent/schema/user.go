@@ -31,6 +31,8 @@ func (User) Fields() []ent.Field {
 			Unique(),
 		field.String("email").
 			Optional(),
+		field.String("phone").
+			Unique(),
 		field.Time("created_at").
 			Default(time.Now),
 		field.Time("updated_at").

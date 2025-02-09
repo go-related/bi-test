@@ -25,6 +25,8 @@ func (Group) Fields() []ent.Field {
 			}
 			return nil
 		}),
+		field.String("phone").
+			Unique(),
 		field.Time("created_at").
 			Default(time.Now),
 		field.Time("updated_at").
