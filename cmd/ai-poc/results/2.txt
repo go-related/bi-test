@@ -1,0 +1,135 @@
+*******************
+MR_IT_en_LU1690376550_RES_2024-12-31.pdf:
+
+overview:
+**Summary of Eurizon Investment SICAV - Contingent Convertible Bonds I, EUR (Data as of 12/31/2024)**
+
+**Fund Overview:**
+- **Manager:** Fabio Ricci
+- **Inception Date:** May 8, 2018
+- **Fund Size:** €831 million
+- **Investment Focus:** Primarily invests in Contingent Convertible Bonds (CoCos) considered as "Additional Tier 1 (AT1) Capital," issued by European financial institutions.
+- **Maximum Holdings in Shares/UCITS:** up to 10% of net assets.
+
+**Performance Metrics:**
+- **Annualized Volatility (Unit):** 12.93% since launch; lower than benchmark volatility.
+- **Sharpe Ratio:** 0.24 since launch, indicating a favorable risk-adjusted return.
+- **Annual Performance (Calendar Year):**
+  - 2024: 11.91% (Unit) vs. 11.72% (Benchmark)
+  - 2023: 9.17% vs. 7.28%
+  - 2022: -13.38% vs. -12.10%
+  - 2021: 4.42% vs. 4.93%
+
+**Cumulative & Annualized Performance:**
+- Year-to-date (YTD) return of 11.91% with 16.29% over the last 5 years and 27.09% since launch.
+
+**Risk Profile:**
+- Classified as medium-low risk (3 out of 7) based on the risk indicator; moderate losses expected under poor market conditions.
+
+**Portfolio Composition:**
+- **Top Holdings:** Focus heavily on financial sector bonds with significant allocations to various CoCos. Example holdings include INTNED 3 7/8 PERP (3.01%), BACR 4 3/8 PERP (2.72%), etc.
+- **Average Rating:** BBB-
+- **Weighted Average Coupon:** 5.72%
+- **Current Yield:** 5.81%
+- **Yield to Worst:** 5.48%
+
+**Fees & Costs:**
+- **Management Fees:** 0.53% (0.40% management commission).
+- **Performance Fees:** Calculated based on a High Water Mark system.
+
+**Investment Strategy:**
+- Focused on high-yield fixed income assets, specifically contingent convertible bonds that convert to equity under specific conditions. The fund can hedge against currency risks and engage in a diversified strategy with regulated financial instruments.
+
+**Important Notes:**
+- Past performance is not indicative of future results, and potential investors should refer to the full prospectus and consider their financial circumstances before investing. The fund is not intended for retail investors or U.S. persons.
+
+This summary encapsulates the key aspects of the Eurizon Investment SICAV - Contingent Convertible Bonds I Fund, covering performance, risk, portfolio structure, and fees, providing a comprehensive overview for interested professional investors.
+**************************************
+Prospectus_Spiko_SICAV_EN.pdf:
+
+overview:
+The document is the prospectus for SPIKO SICAV, an Open-Ended Investment Company with variable capital, governed by European directive 2009/65/EC, and based in France. It was created on May 15, 2024, with an expected lifespan of 99 years. This SICAV holds two sub-funds: Spiko US T-Bills Money Market Fund (USTBL) and Spiko EU T-Bills Money Market Fund (EUTBL).
+
+### Key Features:
+
+1. **General Characteristics:**
+   - **Legal Framework:** The SICAV is part of the UCITS framework and is authorized by the French financial markets authority (AMF).
+   - **Share Structure:** Investors hold shares that represent ownership in the SICAV’s assets and vote according to their holdings.
+   - **Registration:** Shares are represented as tokens on distributed ledger technology (DLT) platforms (Ethereum and Polygon PoS).
+
+2. **Sub-Funds Overview:**
+   - **USTBL:** Focused on US T-bills with an ISIN code of FR001400ODM9. The base currency is USD, with a minimum initial subscription of $1,000.
+   - **EUTBL:** Concentrates on European T-bills with an ISIN code of FR001400ODL1. The base currency is EUR, with a minimum initial subscription of €1,000.
+   - Both funds aim for capital preservation through a short-term MMF classification, employing a variable net asset value.
+
+3. **Management and Responsibilities:**
+   - Managed by Twenty First Capital, the funds have a designated custodian (CACEIS Bank) responsible for asset safekeeping.
+   - The board comprises experienced professionals from diverse backgrounds in finance and technology.
+
+4. **Investment Strategy and Risk:**
+   - Strategies aim to provide liquidity and preserve capital through investments in short-term government securities.
+   - The document details risk profiles, investment goals, and conditions for subscriptions and redemptions.
+
+5. **Tax and Regulatory Framework:**
+   - The SICAV is not directly taxable, but shareholders may incur tax obligations depending on their residency and individual circumstances.
+   - Emphasis is placed on compliance with FATCA and CRS regulations regarding information reporting to tax authorities.
+
+6. **Operational Procedures:**
+   - The document elaborates on the governance structure, operations, and procedures for managing subscriptions and redemptions.
+   - It also addresses issues related to share transfers and requirements for maintaining investor anonymity on the DLT.
+
+### Conclusion:
+The SPIKO SICAV prospectus provides a comprehensive overview of the organizational structure, investment strategies, regulations, and operational procedures governing its sub-funds, aimed at ensuring transparency and compliance for potential investors. Investors are encouraged to consult their financial advisors regarding tax implications and investment suitability.
+**************************************
+reci-kid-jun-2023.pdf:
+
+overview:
+**Summary of the Key Information Document (KID) for Real Estate Credit Investments (RECI)**
+
+**Product Overview:**
+- **Type:** Real Estate Credit Investments (RECI) is a closed-ended investment company.
+- **Objective:** To provide Ordinary Shareholders with leveraged exposure to a portfolio of Real Estate Credit Investments that yield stable returns through quarterly dividends.
+- **Investment Approach:** RECI primarily invests in real estate debt secured by commercial or residential properties in the UK and Western Europe. Investments are made in senior real estate loans and listed real estate debt securities (e.g., Commercial Mortgage Backed Securities).
+
+**Investment Strategy:**
+- RECI manages its portfolio actively, with the potential to sell investments before maturity based on market conditions and investment opportunities.
+- The company limits its leverage for investment purposes to 40% of net asset value (NAV).
+
+**Target Investors:**
+- Not specifically designed for retail investors; aimed at sophisticated, high-net-worth, and institutional investors capable of assessing the associated risks and affording potential losses.
+
+**Key Product Information:**
+- Domicile: Guernsey
+- Legal Structure: Closed End Company
+- Trading Currency: GBP
+- Bloomberg Ticker: RECI LN Equity
+- ISIN: GB00B0HW5366
+- Launch Date: December 2005
+- Financial Year End: March 31
+- Dividend Frequency: Quarterly
+
+**Risks Involved:**
+- Classified as a medium-high risk investment (risk level 5 out of 7).
+- Potential risks include poor portfolio performance, market volatility, operational failures, and economic factors affecting investment values.
+- No protection from future market performance, implying possible total loss of investment.
+
+**Performance Expectations:**
+- Historical average annual total shareholder return of 11.8% over the past ten years.
+- Future performance hinging on the company's investment success and broader economic conditions.
+
+**Costs:**
+- One-off costs: No entry or exit fees; possible brokerage commissions.
+- Ongoing costs: 2.94% annually (management and transaction costs).
+- Performance fees: 20% over a 7% return hurdle.
+- Estimated total costs for an initial investment of £10,000 over different holding periods range from £295 (1 year) to £1,477 (5 years).
+
+**Holding Recommendations:**
+- Suggested minimum holding period of five years due to lack of liquidity.
+- Investors may face challenges liquidating shares at desired prices.
+
+**Additional Information:**
+- Complaints are directed to a specific address in Guernsey, as investors do not have access to the Financial Ombudsman Service.
+- The document reflects regulatory compliance for packaged retail investment products but may not fully represent future performance trends.
+
+This summary is intended to provide an overview of the key points from the KID without offering detailed investment advice or a comprehensive understanding of the risks involved.
+*******************
